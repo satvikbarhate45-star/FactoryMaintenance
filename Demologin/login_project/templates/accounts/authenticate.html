@@ -1,0 +1,1578 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FactoryTrack - Authentication</title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP 5
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            margin: 0;
+
+            background-color: #f8f9fa;
+
+            font-family:
+                'Segoe UI',
+                Tahoma,
+                Geneva,
+                Verdana,
+                sans-serif;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+        }
+
+
+        /* =====================================================
+           MAIN AUTH CONTAINER
+        ===================================================== */
+
+        .auth-container {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            min-height: 620px;
+
+            display: flex;
+
+            background: #ffffff;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            border: 1px solid #dee2e6;
+
+            box-shadow:
+                0 12px 35px
+                rgba(0, 0, 0, 0.09);
+        }
+
+
+        /* =====================================================
+           LEFT BRAND / IMAGE SECTION
+        ===================================================== */
+
+        .brand-section {
+
+            position: relative;
+
+            width: 44%;
+
+            min-height: 620px;
+
+            overflow: hidden;
+
+            color: #ffffff;
+
+            background: #212529;
+        }
+
+
+        /* =====================================================
+           FACTORY IMAGE
+        ===================================================== */
+
+        .brand-image {
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image: url(
+                "https://www.apikospharma.com/wp-content/uploads/2025/07/caucasian-scientist-blue-lab-uniform-configure-manufacture-machine-with-shafts-control-panel-checkin.webp"
+            );
+
+            background-size: cover;
+
+            background-position: center;
+
+            transform: scale(1.03);
+
+            transition:
+                transform 8s ease;
+        }
+
+
+        .auth-container:hover .brand-image {
+
+            transform: scale(1.08);
+        }
+
+
+        /* =====================================================
+           IMAGE OVERLAY
+        ===================================================== */
+
+        .brand-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(15, 23, 42, 0.78),
+                    rgba(15, 23, 42, 0.92)
+                );
+        }
+
+
+        /* =====================================================
+           BRAND CONTENT
+        ===================================================== */
+
+        .brand-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            height: 100%;
+
+            min-height: 620px;
+
+            padding: 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .brand-logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+
+        .brand-logo-icon {
+
+            width: 45px;
+
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #0d6efd;
+
+            border-radius: 8px;
+
+            font-size: 21px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        .brand-logo span {
+
+            font-size: 20px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        /* =====================================================
+           BRAND MAIN CONTENT
+        ===================================================== */
+
+        .brand-main {
+
+            max-width: 380px;
+        }
+
+
+        .brand-main .small-title {
+
+            color: #6ea8fe;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.3px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .brand-main h1 {
+
+            font-size: 36px;
+
+            line-height: 1.2;
+
+            font-weight: 600;
+
+            margin-bottom: 18px;
+        }
+
+
+        .brand-main p {
+
+            color: #dee2e6;
+
+            font-size: 14px;
+
+            line-height: 1.75;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =====================================================
+           FEATURES
+        ===================================================== */
+
+        .feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 13px;
+
+            color: #f1f3f5;
+
+            font-size: 13px;
+        }
+
+
+        .feature i {
+
+            width: 20px;
+
+            color: #6ea8fe;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           BRAND FOOTER
+        ===================================================== */
+
+        .brand-footer {
+
+            color: #adb5bd;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           FORM SECTION
+        ===================================================== */
+
+        .form-section {
+
+            position: relative;
+
+            width: 56%;
+
+            overflow: hidden;
+
+            background: #ffffff;
+        }
+
+
+        /* =====================================================
+           FORM BOX
+        ===================================================== */
+
+        .form-box {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            padding: 55px 65px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            background: #ffffff;
+
+            transition:
+                transform 0.55s
+                cubic-bezier(0.65, 0, 0.35, 1),
+
+                opacity 0.4s ease;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           LOGIN DEFAULT
+        ===================================================== */
+
+        .login-form {
+
+            transform: translateX(0);
+
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+
+        /* =====================================================
+           REGISTER DEFAULT
+        ===================================================== */
+
+        .register-form {
+
+            transform: translateX(100%);
+        }
+
+
+        /* =====================================================
+           REGISTER ACTIVE
+        ===================================================== */
+
+        .auth-container.register-active
+        .login-form {
+
+            transform: translateX(-100%);
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+
+        .auth-container.register-active
+        .register-form {
+
+            transform: translateX(0);
+
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+
+        /* =====================================================
+           FORM HEADER
+        ===================================================== */
+
+        .form-header {
+
+            margin-bottom: 30px;
+        }
+
+
+        .form-header h2 {
+
+            font-size: 29px;
+
+            font-weight: 600;
+
+            color: #212529;
+
+            margin-bottom: 7px;
+        }
+
+
+        .form-header p {
+
+            color: #6c757d;
+
+            font-size: 14px;
+
+            margin: 0;
+        }
+
+
+        /* =====================================================
+           INPUT GROUP
+        ===================================================== */
+
+        .form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            color: #343a40;
+        }
+
+
+        /* =====================================================
+           INPUT WRAPPER
+        ===================================================== */
+
+        .input-wrapper {
+
+            position: relative;
+        }
+
+
+        .input-wrapper i {
+
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #6c757d;
+
+            font-size: 14px;
+
+            pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
+
+        .input-wrapper input,
+        .input-wrapper select {
+
+            width: 100%;
+
+            height: 47px;
+
+            border: 1px solid #ced4da;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            padding:
+                0 14px 0 42px;
+
+            font-size: 14px;
+
+            color: #212529;
+
+            background: #ffffff;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+        }
+
+
+        .input-wrapper input::placeholder {
+
+            color: #adb5bd;
+        }
+
+
+        .input-wrapper input:hover,
+        .input-wrapper select:hover {
+
+            border-color: #adb5bd;
+        }
+
+
+        .input-wrapper input:focus,
+        .input-wrapper select:focus {
+
+            border-color: #86b7fe;
+
+            box-shadow:
+                0 0 0 0.2rem
+                rgba(13, 110, 253, 0.15);
+        }
+
+
+        .input-wrapper select {
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           LOGIN OPTIONS
+        ===================================================== */
+
+        .login-options {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+
+            font-size: 13px;
+        }
+
+
+        .remember-me {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #6c757d;
+
+            cursor: pointer;
+        }
+
+
+        .remember-me input {
+
+            accent-color: #0d6efd;
+
+            cursor: pointer;
+        }
+
+
+        .forgot-password {
+
+            color: #0d6efd;
+
+            text-decoration: none;
+
+            font-weight: 500;
+        }
+
+
+        .forgot-password:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           SUBMIT BUTTON
+        ===================================================== */
+
+        .submit-btn {
+
+            width: 100%;
+
+            height: 47px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #0d6efd;
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            font-weight: 500;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .submit-btn:hover {
+
+            background: #0b5ed7;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 5px 12px
+                rgba(13, 110, 253, 0.20);
+        }
+
+
+        .submit-btn:active {
+
+            transform: translateY(0);
+
+            box-shadow: none;
+        }
+
+
+        /* =====================================================
+           SWITCH ACCOUNT
+        ===================================================== */
+
+        .switch-account {
+
+            text-align: center;
+
+            margin-top: 24px;
+
+            color: #6c757d;
+
+            font-size: 14px;
+        }
+
+
+        .switch-btn {
+
+            border: none;
+
+            background: transparent;
+
+            color: #0d6efd;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            padding: 0;
+
+            margin-left: 4px;
+
+            font-size: 14px;
+        }
+
+
+        .switch-btn:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           FORM FOOTER
+        ===================================================== */
+
+        .form-footer {
+
+            text-align: center;
+
+            color: #adb5bd;
+
+            font-size: 11px;
+
+            margin-top: 30px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #e9ecef;
+        }
+
+
+        /* =====================================================
+           ERROR MESSAGE
+        ===================================================== */
+
+        .error-message {
+
+            background: #fff5f5;
+
+            color: #dc3545;
+
+            border: 1px solid #f5c2c7;
+
+            border-radius: 6px;
+
+            padding: 10px 12px;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        /* =====================================================
+           SUCCESS MESSAGE
+        ===================================================== */
+
+        .success-message {
+
+            background: #f0fff4;
+
+            color: #198754;
+
+            border: 1px solid #badbcc;
+
+            border-radius: 6px;
+
+            padding: 10px 12px;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            body {
+
+                padding: 20px;
+            }
+
+
+            .auth-container {
+
+                max-width: 520px;
+
+                min-height: 600px;
+            }
+
+
+            .brand-section {
+
+                display: none;
+            }
+
+
+            .form-section {
+
+                width: 100%;
+
+                min-height: 600px;
+            }
+
+
+            .form-box {
+
+                padding:
+                    50px 55px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 576px) {
+
+            body {
+
+                padding: 0;
+
+                background: #ffffff;
+
+                align-items: stretch;
+            }
+
+
+            .auth-container {
+
+                width: 100%;
+
+                max-width: none;
+
+                min-height: 100vh;
+
+                border: none;
+
+                border-radius: 0;
+
+                box-shadow: none;
+            }
+
+
+            .brand-section {
+
+                display: none;
+            }
+
+
+            .form-section {
+
+                width: 100%;
+
+                min-height: 100vh;
+            }
+
+
+            .form-box {
+
+                min-height: 100vh;
+
+                padding:
+                    35px 24px;
+            }
+
+
+            .form-header {
+
+                margin-bottom: 25px;
+            }
+
+
+            .form-header h2 {
+
+                font-size: 26px;
+            }
+
+
+            .form-header p {
+
+                font-size: 13px;
+            }
+
+
+            .form-group {
+
+                margin-bottom: 16px;
+            }
+
+
+            .login-options {
+
+                flex-direction: row;
+
+                font-size: 12px;
+            }
+
+
+            .submit-btn {
+
+                height: 46px;
+            }
+
+
+            .form-footer {
+
+                margin-top: 25px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL MOBILE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .form-box {
+
+                padding:
+                    30px 20px;
+            }
+
+
+            .form-header h2 {
+
+                font-size: 24px;
+            }
+
+
+            .login-options {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MAIN AUTH CONTAINER
+========================================================= -->
+
+<div
+    class="auth-container"
+    id="authContainer"
+>
+
+
+    <!-- =====================================================
+         LEFT IMAGE / BRAND
+    ====================================================== -->
+
+    <div class="brand-section">
+
+
+        <!-- Factory Image -->
+
+        <div class="brand-image"></div>
+
+
+        <!-- Dark Overlay -->
+
+        <div class="brand-overlay"></div>
+
+
+        <!-- Content -->
+
+        <div class="brand-content">
+
+
+            <!-- Logo -->
+
+            <div class="brand-logo">
+
+                <div class="brand-logo-icon">
+
+                    <i class="fa-solid fa-gears"></i>
+
+                </div>
+
+
+                <span>
+                    FactoryTrack
+                </span>
+
+            </div>
+
+
+            <!-- Main Content -->
+
+            <div class="brand-main">
+
+
+                <div class="small-title">
+
+                    FACTORY MANAGEMENT SYSTEM
+
+                </div>
+
+
+                <h1>
+
+                    Smarter factory.
+                    Better production.
+
+                </h1>
+
+
+                <p>
+
+                    Monitor equipment, manage maintenance,
+                    track downtime and keep your production
+                    running efficiently from one centralized
+                    platform.
+
+                </p>
+
+
+                <!-- Feature 1 -->
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <span>
+                        Real-time factory monitoring
+                    </span>
+
+                </div>
+
+
+                <!-- Feature 2 -->
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+
+                    <span>
+                        Equipment & maintenance tracking
+                    </span>
+
+                </div>
+
+
+                <!-- Feature 3 -->
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+
+                    <span>
+                        Downtime & incident management
+                    </span>
+
+                </div>
+
+
+                <!-- Feature 4 -->
+
+                <div class="feature">
+
+                    <i class="fa-solid fa-users-gear"></i>
+
+                    <span>
+                        Technician management
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Footer -->
+
+            <div class="brand-footer">
+
+                © 2026 FactoryTrack. All rights reserved.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FORM SECTION
+    ====================================================== -->
+
+    <div class="form-section">
+
+
+        <!-- =================================================
+             LOGIN FORM
+        ================================================== -->
+
+        <div class="form-box login-form">
+
+
+            <!-- Header -->
+
+            <div class="form-header">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Sign in to your FactoryTrack account.
+                </p>
+
+            </div>
+
+
+            <!-- Django Message -->
+
+            {% if message %}
+
+                <div class="error-message">
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    <span>
+                        {{ message }}
+                    </span>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Login Form -->
+
+            <form
+                method="POST"
+                action="{% url 'login' %}"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+
+                        Work Email
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="loginEmail"
+                            name="email"
+                            placeholder="name@company.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+
+                        Password
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Options -->
+
+                <div class="login-options">
+
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            name="remember"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot-password"
+                    >
+
+                        Forgot password?
+
+                    </a>
+
+
+                </div>
+
+
+                <!-- Login Button -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>
+
+                    Sign In
+
+                </button>
+
+
+            </form>
+
+
+            <!-- Register Switch -->
+
+            <div class="switch-account">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    class="switch-btn"
+                    onclick="showRegister()"
+                >
+
+                    Create Account
+
+                </button>
+
+            </div>
+
+
+            <div class="form-footer">
+
+                Secure FactoryTrack Access
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             REGISTER FORM
+        ================================================== -->
+
+        <div class="form-box register-form">
+
+
+            <!-- Header -->
+
+            <div class="form-header">
+
+                <h2>
+                    Create Account
+                </h2>
+
+                <p>
+                    Register to access FactoryTrack.
+                </p>
+
+            </div>
+
+
+            <!-- Register Form -->
+
+            <form
+                method="POST"
+                action="{% url 'register' %}"
+            >
+
+                {% csrf_token %}
+
+
+                <!-- First Name -->
+
+                <div class="form-group">
+
+                    <label for="firstName">
+
+                        First Name
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="first_name"
+                            placeholder="John"
+                            autocomplete="given-name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Last Name -->
+
+                <div class="form-group">
+
+                    <label for="lastName">
+
+                        Last Name
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="last_name"
+                            placeholder="Doe"
+                            autocomplete="family-name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+
+                        Work Email
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            placeholder="name@company.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+
+                        Password
+
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            name="password"
+                            placeholder="Create a password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Register Button -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+
+                    <i class="fa-solid fa-user-plus me-2"></i>
+
+                    Create Account
+
+                </button>
+
+
+            </form>
+
+
+            <!-- Login Switch -->
+
+            <div class="switch-account">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    class="switch-btn"
+                    onclick="showLogin()"
+                >
+
+                    Sign In
+
+                </button>
+
+            </div>
+
+
+            <div class="form-footer">
+
+                Secure FactoryTrack Access
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+    const authContainer =
+        document.getElementById(
+            "authContainer"
+        );
+
+
+    /* =====================================================
+       SHOW REGISTER
+    ===================================================== */
+
+    function showRegister() {
+
+        authContainer.classList.add(
+            "register-active"
+        );
+
+    }
+
+
+    /* =====================================================
+       SHOW LOGIN
+    ===================================================== */
+
+    function showLogin() {
+
+        authContainer.classList.remove(
+            "register-active"
+        );
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
